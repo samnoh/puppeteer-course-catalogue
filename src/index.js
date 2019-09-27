@@ -1,11 +1,6 @@
 const Page = require('./page');
 const Output = require('./output');
-
-const UOA_COURSE_CATALOGUE =
-    'http://www.student.guest.auckland.ac.nz/psc/ps/EMPLOYEE/SA/c/UOA_COMMUNITY_ACCESS_FL.UOA_BRWSE_CTLG_FL.GBL?languageCd=ENG';
-const QUERY = '.ps-link';
-const ALPHABETS = Array.from(Array(26), (_, i) => String.fromCharCode('A'.charCodeAt(0) + i)); // A-Z
-const FILEPATH = 'output.txt';
+const { UOA_COURSE_CATALOGUE, QUERY, ALPHABETS, FILEPATH } = require('./constants');
 
 (async () => {
     const output = Output.build(FILEPATH);
