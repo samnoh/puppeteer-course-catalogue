@@ -16,8 +16,7 @@ const { UOA_COURSE_CATALOGUE, QUERY, ALPHABETS, FILEPATH } = require('./constant
 
         output.append(
             text
-                .filter(t => t.length > 1)
-                .filter(t => t !== 'Skip to Main Content')
+                .filter(t => t.length > 1 && t !== 'Skip to Main Content')
                 .map(t => t.split('-')[0].trim())
                 .join('\n') + '\n'
         );
