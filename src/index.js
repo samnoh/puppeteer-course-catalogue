@@ -3,21 +3,21 @@ const Output = require('./output');
 
 const UOA_COURSE_CATALOGUE =
     'http://www.student.guest.auckland.ac.nz/psc/ps/EMPLOYEE/SA/c/UOA_COMMUNITY_ACCESS_FL.UOA_BRWSE_CTLG_FL.GBL?languageCd=ENG';
-const query = '.ps-link';
-
-const alphabets = Array.from(Array(26), (_, i) => String.fromCharCode('A'.charCodeAt(0) + i));
+const QUERY = '.ps-link';
+const ALPHABETS = Array.from(Array(26), (_, i) => String.fromCharCode('A'.charCodeAt(0) + i)); // A-Z
+const FILEPATH = 'output.txt';
 
 (async () => {
-    const output = Output.build('output.txt');
+    const output = Output.build(FILEPATH);
     const page = await Page.build();
     await page.goto(UOA_COURSE_CATALOGUE);
 
-    for (c of alphabets) {
-        console.log(((alphabets.indexOf(c) / 26) * 100).toFixed(2) + '%...');
-        await page.PressButtonAmongList(query, c);
-        await page.waitFor(500);
+    for (char of ALPHABETS) {
+        console.log(((ALPHABETS.indexOf(char) / 26) * 100).toFixed(2) + '%...');
 
-        const text = await page.getAllContentsOf(query);
+        await page.PressButtonAmongList(QUERY, char);
+        await page.waitFor(500);
+        const text = await page.getAllContentsOf(QUERY);
 
         output.append(
             text

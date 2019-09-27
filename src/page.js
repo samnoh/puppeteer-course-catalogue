@@ -31,15 +31,15 @@ class CustomPage {
         }, selector);
     }
 
-    PressButtonAmongList(selector, innerText) {
+    PressButtonAmongList(selector, char) {
         return this.page.evaluate(
-            (_selector, _innerText) => {
+            (_selector, _char) => {
                 const elements = [...document.querySelectorAll(_selector)];
-                const targetElement = elements.find(e => e.innerText === _innerText);
+                const targetElement = elements.find(e => e.innerText === _char);
                 targetElement && targetElement.click();
             },
             selector,
-            innerText
+            char
         );
     }
 
