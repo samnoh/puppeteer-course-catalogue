@@ -1,0 +1,25 @@
+{
+    "name": "puppeteer-course-catalogue",
+    "version": "1.0.0",
+    "description": "",
+    "private": true,
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon src/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/samnoh/puppeteer-course-catalogue.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/samnoh/puppeteer-course-catalogue/issues"
+    },
+    "homepage": "https://github.com/samnoh/puppeteer-course-catalogue#readme",
+    "dependencies": {
+        "puppeteer": "^1.20.0",
+        "nodemon": "^1.19.2"
+    }
+}
