@@ -25,7 +25,10 @@ class CustomPage {
     }
 
     getAllContentsOf(selector) {
-        return this.page.evaluate(_selector => {}, selector);
+        return this.page.evaluate(_selector => {
+            const elements = [...document.querySelectorAll(_selector)];
+            return elements.map(e => e.innerHTML);
+        }, selector);
     }
 
     PressButtonAmongList(selector, innerText) {
