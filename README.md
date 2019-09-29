@@ -2,6 +2,11 @@
 
 Crawl all course catalogues of UoA using pupeeteer.
 
+## Setup
+
+-   Docker
+-   Node.js & npm
+
 ## Usage
 
 ### Start
