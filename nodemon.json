@@ -1,0 +1,8 @@
+{
+    "verbose": false,
+    "ignore": ["dist/*"],
+    "delay": "200",
+    "events": {
+        "restart": "rm -rf dist"
+    }
+}
