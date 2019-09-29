@@ -1,13 +1,24 @@
 const fs = require('fs');
 
 class Output {
-    constructor(filepath) {
-        this.filepath = filepath;
-        this.logger = fs.createWriteStream(filepath, { flags: 'a' });
+    basePath = 'dist/';
+
+    constructor(filepath, firstLine, lastLine, callback) {
+        this.createDir(this.basePath);
+
+        this.filepath = `${this.basePath}${filepath}`;
+        this.logger = fs.createWriteStream(this.filepath, { flags: 'a' });
+        this.firstLine = firstLine;
+        this.lastLine = lastLine;
+        this.callback = this.callback;
+
+        this.logger.write(this.firstLine);
     }
 
-    static build(filepath) {
-        return new Output(filepath);
+    createDir(dirPath) {
+        if (!fs.existsSync(dirPath)) {
+            fs.mkdirSync(dirPath);
+        }
     }
 
     remove() {
@@ -22,7 +33,17 @@ class Output {
         }
     }
 
+    rename(newFilepath) {
+        try {
+            fs.renameSync(`${this.filepath}`, `${this.basePath}${newFilepath}`);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
     close() {
+        this.logger.write(this.lastLine);
+        if (this.callback) this.callback();
         this.logger.end();
     }
 }
