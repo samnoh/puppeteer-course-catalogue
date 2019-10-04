@@ -16,4 +16,3 @@ RUN  apt-get update \
 COPY ./package.json /app
 RUN npm install
 COPY . .
-
