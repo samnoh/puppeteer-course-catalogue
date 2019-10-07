@@ -3,9 +3,9 @@ import Output from './Output';
 import constants from './constants';
 import chunkHelper from './utils/chunkHelper';
 
-const { UOA_COURSE_CATALOGUE, QUERY, ALPHABETS, FILEPATH } = constants;
-
 (async () => {
+    const { UOA_COURSE_CATALOGUE, QUERY, ALPHABETS, FILEPATH } = constants;
+
     const output = new Output(FILEPATH, 'export default [', ']');
 
     const page = await Page.build();
