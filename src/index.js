@@ -20,7 +20,7 @@ const chunkHelper = text =>
     const page = await Page.build();
     await page.goto(UOA_COURSE_CATALOGUE);
 
-    for (char of ALPHABETS) {
+    for (const char of ALPHABETS) {
         console.log(((ALPHABETS.indexOf(char) / 26) * 100).toFixed(2) + '%...');
 
         await page.PressButtonAmongList(QUERY, char);
