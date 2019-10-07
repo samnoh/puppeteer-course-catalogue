@@ -7,7 +7,7 @@
     "scripts": {
         "start": "npm run build && node build/index.js",
         "dev": "nodemon --exec babel-node src/index.js",
-        "prebuild": "rimraf dist && rimraf build",
+        "prebuild": "rimraf dist build",
         "build": "babel src --out-dir build ",
         "commit": "git-cz"
     },
