@@ -9,7 +9,9 @@
         "dev": "nodemon --exec babel-node src/index.js",
         "prebuild": "rimraf dist build",
         "build": "babel src --out-dir build ",
-        "commit": "git-cz"
+        "commit": "git-cz",
+        "lint": "eslint src",
+        "format": "npm run lint -- --fix"
     },
     "repository": {
         "type": "git",
@@ -30,8 +32,10 @@
         "@babel/core": "7.6.2",
         "@babel/node": "7.6.2",
         "@babel/preset-env": "7.6.2",
-        "@babel/plugin-proposal-class-properties": "7.5.5",
         "cz-conventional-changelog": "3.0.2",
+        "eslint": "6.5.1",
+        "eslint-config-airbnb-base": "14.0.0",
+        "eslint-plugin-import": "2.18.2",
         "nodemon": "1.19.2",
         "rimraf": "3.0.0"
     },
