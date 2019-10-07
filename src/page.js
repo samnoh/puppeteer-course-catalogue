@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer');
+import puppeteer from 'puppeteer';
 
 class CustomPage {
     static async build() {
@@ -42,44 +42,6 @@ class CustomPage {
             char
         );
     }
-
-    get(path) {
-        return this.page.evaluate(
-            _path =>
-                fetch(_path, {
-                    method: 'GET',
-                    credentials: 'same-origin',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then(res => res.json()),
-            path
-        );
-    }
-
-    post(path, data) {
-        return this.page.evaluate(
-            (_path, _data) =>
-                fetch(_path, {
-                    method: 'POST',
-                    credentials: 'same-origin',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(_data)
-                }).then(res => res.json()),
-            path,
-            data
-        );
-    }
-
-    execRequests(actions) {
-        return Promise.all(
-            actions.map(({ method, path, data }) => {
-                return this[method](path, data); // this.get(path) or this.post(path, data);
-            })
-        );
-    }
 }
 
-module.exports = CustomPage;
+export default CustomPage;

@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 class Output {
     basePath = 'dist/';
@@ -48,4 +48,4 @@ class Output {
     }
 }
 
-module.exports = Output;
+export default Output;
