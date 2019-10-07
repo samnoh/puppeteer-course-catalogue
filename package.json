@@ -6,14 +6,14 @@
     "main": "index.js",
     "scripts": {
         "start": "rm -rf dist && nodemon src/index.js",
-        "commit": "npx git-cz"
+        "commit": "git-cz"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/samnoh/puppeteer-course-catalogue.git"
     },
     "keywords": [],
-    "author": "",
+    "author": "Sam Noh",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/samnoh/puppeteer-course-catalogue/issues"
