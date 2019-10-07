@@ -2,18 +2,14 @@ import puppeteer from 'puppeteer';
 
 class CustomPage {
     static async build() {
-        const browser = await puppeteer.launch({
-            headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox', '--diable-dev-shm-usage']
-        });
+        const browser = await puppeteer.launch({ headless: true,
+            args: ['--no-sandbox', '--disable-setuid-sandbox', '--diable-dev-shm-usage'] });
         const page = await browser.newPage();
         const customPage = new CustomPage(page);
 
-        return new Proxy(customPage, {
-            get: function(target, property) {
-                return target[property] || page[property] || browser[property];
-            }
-        });
+        return new Proxy(customPage, { get(target, property) {
+            return target[property] || page[property] || browser[property];
+        } });
     }
 
     constructor(page) {
@@ -21,13 +17,13 @@ class CustomPage {
     }
 
     getContentsOf(selector) {
-        return this.page.$eval(selector, el => el.innerHTML);
+        return this.page.$eval(selector, (el) => el.innerHTML);
     }
 
     getAllContentsOf(selector) {
-        return this.page.evaluate(_selector => {
+        return this.page.evaluate((_selector) => {
             const elements = [...document.querySelectorAll(_selector)];
-            return elements.map(e => e.innerHTML);
+            return elements.map((e) => e.innerHTML);
         }, selector);
     }
 
@@ -35,11 +31,11 @@ class CustomPage {
         return this.page.evaluate(
             (_selector, _char) => {
                 const elements = [...document.querySelectorAll(_selector)];
-                const targetElement = elements.find(e => e.innerText === _char);
-                targetElement && targetElement.click();
+                const targetElement = elements.find((e) => e.innerText === _char);
+                if (targetElement) targetElement.click();
             },
             selector,
-            char
+            char,
         );
     }
 }

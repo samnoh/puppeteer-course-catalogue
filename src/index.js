@@ -1,7 +1,7 @@
-import Page from './page';
-import Output from './output';
+import Page from './Page';
+import Output from './Output';
 import constants from './constants';
-import { chunkHelper } from './utils';
+import chunkHelper from './utils/chunkHelper';
 
 const { UOA_COURSE_CATALOGUE, QUERY, ALPHABETS, FILEPATH } = constants;
 
@@ -11,8 +11,9 @@ const { UOA_COURSE_CATALOGUE, QUERY, ALPHABETS, FILEPATH } = constants;
     const page = await Page.build();
     await page.goto(UOA_COURSE_CATALOGUE);
 
-    for (const char of ALPHABETS) {
-        console.log(((ALPHABETS.indexOf(char) / 26) * 100).toFixed(2) + '%...');
+    for (let i = 0; i < ALPHABETS.length; i += 1) {
+        const char = ALPHABETS[i];
+        console.log(`${((ALPHABETS.indexOf(char) / ALPHABETS.length) * 100).toFixed(2)}%...`);
 
         await page.PressButtonAmongList(QUERY, char);
         await page.waitFor(500);

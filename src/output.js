@@ -1,23 +1,19 @@
 import fs from 'fs';
 
 class Output {
-    basePath = 'dist/';
-
-    constructor(filepath, firstLine, lastLine, callback) {
-        this.createDir(this.basePath);
-
+    constructor(filepath, firstLine, lastLine) {
+        this.basePath = 'dist/';
         this.filepath = `${this.basePath}${filepath}`;
+        this.createDir();
         this.logger = fs.createWriteStream(this.filepath, { flags: 'a' });
         this.firstLine = firstLine;
         this.lastLine = lastLine;
-        this.callback = this.callback;
-
         this.logger.write(this.firstLine);
     }
 
-    createDir(dirPath) {
-        if (!fs.existsSync(dirPath)) {
-            fs.mkdirSync(dirPath);
+    createDir() {
+        if (!fs.existsSync(this.basePath)) {
+            fs.mkdirSync(this.basePath);
         }
     }
 
@@ -29,7 +25,7 @@ class Output {
         try {
             this.logger.write(data);
         } catch (e) {
-            console.error(e);
+            console.log(e);
         }
     }
 
@@ -37,13 +33,12 @@ class Output {
         try {
             fs.renameSync(`${this.filepath}`, `${this.basePath}${newFilepath}`);
         } catch (e) {
-            console.error(e);
+            console.log(e);
         }
     }
 
     close() {
         this.logger.write(this.lastLine);
-        if (this.callback) this.callback();
         this.logger.end();
     }
 }
