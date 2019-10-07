@@ -5,7 +5,7 @@
     "private": true,
     "main": "index.js",
     "scripts": {
-        "start": "rm -rf dist && nodemon src/index.js",
+        "start": "rimraf dist && nodemon src/index.js",
         "commit": "git-cz"
     },
     "repository": {
@@ -24,7 +24,8 @@
         "nodemon": "^1.19.2"
     },
     "devDependencies": {
-        "cz-conventional-changelog": "3.0.2"
+        "cz-conventional-changelog": "3.0.2",
+        "rimraf": "3.0.0"
     },
     "config": {
         "commitizen": {
