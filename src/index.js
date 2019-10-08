@@ -6,7 +6,7 @@ import chunkHelper from './utils/chunkHelper';
 (async () => {
     const { UOA_COURSE_CATALOGUE, QUERY, ALPHABETS, FILEPATH } = constants;
 
-    const output = new Output(FILEPATH, 'export default [', ']');
+    const output = new Output(FILEPATH, 'export default {', '}');
 
     const page = await Page.build();
     await page.goto(UOA_COURSE_CATALOGUE);
