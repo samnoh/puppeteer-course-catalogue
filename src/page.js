@@ -2,14 +2,19 @@ import puppeteer from 'puppeteer';
 
 class CustomPage {
     static async build() {
-        const browser = await puppeteer.launch({ headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox', '--diable-dev-shm-usage'] });
+        const browser = await puppeteer.launch({
+            headless: true,
+            args: ['--no-sandbox', '--disable-setuid-sandbox', '--diable-dev-shm-usage'],
+        });
         const page = await browser.newPage();
         const customPage = new CustomPage(page);
+        customPage.browser = browser;
 
-        return new Proxy(customPage, { get(target, property) {
-            return target[property] || page[property] || browser[property];
-        } });
+        return new Proxy(customPage, {
+            get(target, property) {
+                return target[property] || page[property] || browser[property];
+            },
+        });
     }
 
     constructor(page) {
@@ -35,7 +40,7 @@ class CustomPage {
                 if (targetElement) targetElement.click();
             },
             selector,
-            char,
+            char
         );
     }
 }

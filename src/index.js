@@ -13,7 +13,9 @@ import chunkHelper from './utils/chunkHelper';
 
     for (let i = 0; i < ALPHABETS.length; i += 1) {
         const char = ALPHABETS[i];
-        console.log(`${((ALPHABETS.indexOf(char) / ALPHABETS.length) * 100).toFixed(2)}%...`);
+        console.log(
+            `${char} : ${((ALPHABETS.indexOf(char) / ALPHABETS.length) * 100).toFixed(2)}%...`
+        );
 
         await page.PressButtonAmongList(QUERY, char);
         await page.waitFor(500);
@@ -26,6 +28,7 @@ import chunkHelper from './utils/chunkHelper';
     output.close();
 
     await page.close();
+    await page.browser.close();
 
     console.log('[ End ]');
 })();
